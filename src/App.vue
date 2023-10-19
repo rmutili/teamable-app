@@ -1,5 +1,5 @@
 <template>
-  <div id="display-view">
+  <div v-show="!isEditMode">
     <h1>User profile</h1>
     <img :src="image" />
 
@@ -12,10 +12,10 @@
     <span>Interests: </span><b id="interests">{{ interests }}</b>
     <hr />
 
-    <button @click="handleEditProfile">Update Profile</button>
+    <button @click="handleEditProfile">Edit Profile</button>
   </div>
 
-  <div id="edit-view">
+  <div v-show="isEditMode">
     <h1>User profile</h1>
     <img :src="image" />
 
@@ -45,16 +45,15 @@ export default {
       name: "Anna Smith",
       email: "anna.smith@example.com",
       interests: "Coding",
+      isEditMode: false,
     };
   },
   methods: {
     handleEditProfile() {
-      document.getElementById("edit-view").style.display = "block";
-      document.getElementById("display-view").style.display = "none";
+      this.isEditMode = true;
     },
     handleUpdateProfile() {
-      document.getElementById("edit-view").style.display = "none";
-      document.getElementById("display-view").style.display = "block";
+      this.isEditMode = false;
     },
   },
 };
@@ -99,10 +98,6 @@ input {
   padding: 10px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-}
-
-#edit-view {
-  display: none;
 }
 
 h1 {
