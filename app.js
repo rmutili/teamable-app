@@ -1,5 +1,4 @@
 function handleEditProfile() {
-  new Datepicker("#input-birthday");
   var name = document.getElementById("name").textContent;
   var inputName = document.getElementById("input-name");
   inputName.value = name;
@@ -23,11 +22,7 @@ function handleUpdateProfile() {
 
   var updatedEmail = document.getElementById("input-email").value;
   var email = document.getElementById("email");
-  if (validator.isEmail(updatedEmail)) {
-    email.textContent = updatedEmail;
-  } else {
-    alert("Wrong email format");
-  }
+  email.textContent = updatedEmail;
 
   var updatedInterests = document.getElementById("input-interests").value;
   var interests = document.getElementById("interests");
