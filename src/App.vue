@@ -3,16 +3,16 @@
     <h1>User profile</h1>
     <img :src="image" />
 
-    <span>Name: </span><b id="name"> Anna Smith</b>
+    <span>Name: </span><b id="name">{{ name }}</b>
     <hr />
 
-    <span>Email: </span><b id="email">anna.smith@example.com</b>
+    <span>Email: </span><b id="email">{{ email }}</b>
     <hr />
 
-    <span>Interests: </span><b id="interests">Coding</b>
+    <span>Interests: </span><b id="interests">{{ interests }}</b>
     <hr />
 
-    <button @click="handleEditProfile">Edit Profile</button>
+    <button @click="handleEditProfile">Update Profile</button>
   </div>
 
   <div id="edit-view">
@@ -20,15 +20,15 @@
     <img :src="image" />
 
     <span>Name: </span>
-    <input type="text" id="input-name" placeholder="Smith" />
+    <input type="text" id="input-name" v-model="name" />
     <hr />
 
     <span>Email: </span>
-    <input type="text" id="input-email" placeholder="anna.smith@example.com" />
+    <input type="text" id="input-email" v-model="email" />
     <hr />
 
     <span>Interests: </span>
-    <input type="text" id="input-interests" placeholder="Coding" />
+    <input type="text" id="input-interests" v-model="interests" />
     <hr />
 
     <button @click="handleUpdateProfile">Update Profile</button>
@@ -42,38 +42,17 @@ export default {
   data() {
     return {
       image: image,
+      name: "Anna Smith",
+      email: "anna.smith@example.com",
+      interests: "Coding",
     };
   },
   methods: {
     handleEditProfile() {
-      var name = document.getElementById("name").textContent;
-      var inputName = document.getElementById("input-name");
-      inputName.value = name;
-
-      var email = document.getElementById("email").textContent;
-      var inputEmail = document.getElementById("input-email");
-      inputEmail.value = email;
-
-      var interests = document.getElementById("interests").textContent;
-      var inputInterests = document.getElementById("input-interests");
-      inputInterests.value = interests;
-
       document.getElementById("edit-view").style.display = "block";
       document.getElementById("display-view").style.display = "none";
     },
     handleUpdateProfile() {
-      var updatedName = document.getElementById("input-name").value;
-      var name = document.getElementById("name");
-      name.textContent = updatedName;
-
-      var updatedEmail = document.getElementById("input-email").value;
-      var email = document.getElementById("email");
-      email.textContent = updatedEmail;
-
-      var updatedInterests = document.getElementById("input-interests").value;
-      var interests = document.getElementById("interests");
-      interests.textContent = updatedInterests;
-
       document.getElementById("edit-view").style.display = "none";
       document.getElementById("display-view").style.display = "block";
     },
